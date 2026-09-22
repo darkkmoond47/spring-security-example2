@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <title>Trang chủ</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="hero">
+        <p class="eyebrow">CUSTOM LOGIN</p>
+        <h1>Trang chủ UTEShop</h1>
+        <p sec:authorize="isAuthenticated()">
+            Xin chào <strong th:text="${#authentication.principal.fullName}">User</strong>
+        </p>
+    </div>
+
+    <div class="panel" sec:authorize="isAuthenticated()">
+        <h2>Thông tin đăng nhập</h2>
+        <div class="info-grid">
+            <span>Username</span>
+            <strong th:text="${#authentication.principal.username}"></strong>
+            <span>Email</span>
+            <strong th:text="${#authentication.principal.email}"></strong>
+            <span>Role</span>
+            <strong th:text="${#authentication.principal.role}"></strong>
+        </div>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<header class="topbar" th:fragment="header"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <div class="brand"><a th:href="@{/}">UTEShop</a></div>
+    <nav>
+        <a th:href="@{/}">Trang chủ</a>
+    </nav>
+
+    <div class="profile" sec:authorize="isAuthenticated()">
+        <img class="avatar"
+             th:src="${#authentication.principal.images != null and !#authentication.principal.images.isBlank() ? #authentication.principal.images : '/images/user.png'}"
+             alt="Avatar">
+        <div class="profile-info">
+            <strong th:text="${#authentication.principal.fullName}">Nguyễn Văn A</strong>
+            <span>
+                (<span th:text="${#authentication.principal.username}">username</span>)
+            </span>
+            <span th:text="${#authentication.principal.email}">email@gmail.com</span>
+            <span class="role" th:text="${#authentication.principal.role}">ROLE_USER</span>
+        </div>
+        <form th:action="@{/logout}" method="post">
+            <button class="link-button" type="submit">Đăng xuất</button>
+        </form>
+    </div>
+
+    <a class="login-link" sec:authorize="!isAuthenticated()" th:href="@{/login}">Đăng nhập</a>
+</header>

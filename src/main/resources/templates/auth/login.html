@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Đăng nhập UTEShop</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body class="auth-page">
+<div class="auth-card">
+    <div class="auth-badge">EXAMPLE 2</div>
+    <h1>Đăng nhập</h1>
+    <p class="muted">Sử dụng username hoặc email</p>
+
+    <div class="alert error" th:if="${param.error}">Username/email hoặc password không đúng.</div>
+    <div class="alert success" th:if="${param.logout}">Bạn đã đăng xuất.</div>
+
+    <form th:action="@{/login}" method="post">
+        <label>Username hoặc Email</label>
+        <input type="text" name="username" placeholder="user01 hoặc user01@gmail.com" required>
+
+        <label>Password</label>
+        <input type="password" name="password" placeholder="••••••" required>
+
+        <button class="btn primary full mt" type="submit">Đăng nhập</button>
+    </form>
+
+    <div class="demo-box">
+        <b>Tài khoản mẫu</b>
+        <span>user01 / 123456</span>
+        <span>user01@gmail.com / 123456</span>
+    </div>
+</div>
+</body>
+</html>
