@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="vi"
+xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Add User</title>
+</head>
+
+<body>
+
+
+<h1>Thêm User</h1>
+
+
+<form th:action="@{/users/save}"
+      th:object="${user}"
+      method="post">
+
+
+<input th:field="*{username}"
+placeholder="Username">
+
+
+<input th:field="*{email}"
+placeholder="Email">
+
+
+<input th:field="*{fullName}"
+placeholder="Họ tên">
+
+
+<input th:field="*{images}"
+placeholder="Ảnh">
+
+
+<button type="submit">
+Lưu
+</button>
+
+
+</form>
+
+
+</body>
+</html>

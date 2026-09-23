@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="vi"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Product</title>
+
+<link rel="stylesheet"
+      th:href="@{/css/app.css}">
+
+</head>
+
+
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+
+<div class="container">
+
+<h1>Quản lý sản phẩm</h1>
+
+
+<a href="/products/add">
+    Thêm sản phẩm
+</a>
+
+
+<form method="get"
+      action="/products">
+
+    <input type="text"
+           name="keyword"
+           th:value="${keyword}"
+           placeholder="Tìm tên sản phẩm">
+
+
+    <button type="submit">
+        Tìm kiếm
+    </button>
+
+</form>
+
+
+<table border="1"
+       width="100%">
+
+<tr>
+
+<th>ID</th>
+
+<th>Tên</th>
+
+<th>Giá</th>
+
+<th>Mô tả</th>
+
+<th>Trạng thái</th>
+
+<th>Thao tác</th>
+
+</tr>
+
+
+<tr th:each="p : ${products.content}">
+
+
+<td th:text="${p.id}"></td>
+
+<td th:text="${p.name}"></td>
+
+<td th:text="${p.price}"></td>
+
+<td th:text="${p.description}"></td>
+
+<td th:text="${p.enabled}"></td>
+
+
+<td>
+
+<a th:href="@{/products/edit/{id}(id=${p.id})}">
+Sửa
+</a>
+
+
+<a th:href="@{/products/delete/{id}(id=${p.id})}">
+Xóa
+</a>
+
+</td>
+
+
+</tr>
+
+
+</table>
+
+
+<div>
+
+<a th:if="${products.hasPrevious()}"
+   th:href="@{/products(page=${products.number-1},keyword=${keyword})}">
+    Trang trước
+</a>
+
+
+<span>
+Trang 
+<span th:text="${products.number + 1}"></span>
+/
+<span th:text="${products.totalPages}"></span>
+</span>
+
+
+<a th:if="${products.hasNext()}"
+   th:href="@{/products(page=${products.number+1},keyword=${keyword})}">
+    Trang sau
+</a>
+
+
+</div>
+
+
+</div>
+
+
+</body>
+
+</html>

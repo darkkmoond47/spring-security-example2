@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="vi"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Category Form</title>
+
+<link rel="stylesheet"
+      th:href="@{/css/app.css}">
+
+</head>
+
+
+<body>
+
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+
+
+<div class="container">
+
+
+<h1>Danh mục</h1>
+
+
+
+<form th:action="@{/categories/save}"
+      th:object="${category}"
+      method="post">
+
+
+<input type="hidden"
+       th:field="*{id}">
+
+
+
+<label>
+Tên danh mục
+</label>
+
+<input type="text"
+       th:field="*{name}"
+       placeholder="Tên danh mục">
+
+
+
+<br><br>
+
+
+
+<label>
+Hình ảnh
+</label>
+
+
+<input type="text"
+       th:field="*{images}"
+       placeholder="Ảnh">
+
+
+
+<br><br>
+
+
+
+<label>
+Trạng thái
+</label>
+
+
+<input type="checkbox"
+       th:field="*{enabled}">
+
+
+
+<br><br>
+
+
+<button type="submit">
+Lưu
+</button>
+
+
+
+</form>
+
+
+</div>
+
+
+</body>
+
+</html>
